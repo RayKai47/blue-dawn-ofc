@@ -1,0 +1,8 @@
+# Netlify 會自動套用最新的 Next.js adapter（OpenNext）。
+# 請勿安裝或釘死 @netlify/plugin-nextjs，否則會退出自動更新。
+[build]
+  command = "yarn build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
