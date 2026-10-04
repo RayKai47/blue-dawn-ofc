@@ -138,3 +138,21 @@
     @apply font-sans;
   }
 }
+
+/* Layout 左右側景：背景圖 + fixed attachment，非 position:fixed 浮層 */
+.site-side-left,
+.site-side-right {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.site-side-left {
+  background-image: url("/index/side/side-bg-left.jpg");
+  background-position: left center;
+}
+
+.site-side-right {
+  background-image: url("/index/side/side-bg-right.jpg");
+  background-position: right center;
+}

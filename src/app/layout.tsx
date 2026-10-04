@@ -33,7 +33,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">
         <SiteHeader />
-        <main className="flex flex-1 flex-col">{children}</main>
+        <div className="site-shell flex flex-1">
+          <aside
+            aria-hidden
+            className="site-side-left hidden w-28 shrink-0 lg:block xl:w-36"
+          />
+          <main className="flex min-w-0 flex-1 flex-col">{children}</main>
+          <aside
+            aria-hidden
+            className="site-side-right hidden w-28 shrink-0 lg:block xl:w-36"
+          />
+        </div>
         <SiteFooter />
       </body>
     </html>
