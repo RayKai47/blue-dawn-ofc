@@ -23,6 +23,16 @@ type CarouselProps = {
 
 const DEFAULT_INTERVAL_MS = 5000;
 
+const arrowButtonClassName = cn(
+  "m-0 p-2 size-10 text-background bg-night-sky/45",
+  "border-0 rounded-full",
+  "flex items-center justify-center",
+  "absolute top-1/2 z-10 -translate-y-1/2",
+  "transition-colors",
+  "hover:bg-night-sky/65 focus-visible:outline-none",
+  "focus-visible:ring-2 focus-visible:ring-dawn-gold",
+);
+
 const Carousel = ({
   slides,
   intervalMs = DEFAULT_INTERVAL_MS,
@@ -137,13 +147,7 @@ const Carousel = ({
           <>
             <button
               type="button"
-              className={cn(
-                "m-0 p-2 size-10 text-background bg-night-sky/45 border-0",
-                "flex items-center justify-center",
-                "top-1/2 left-3 z-10 absolute -translate-y-1/2",
-                "transition-colors hover:bg-night-sky/65 focus-visible:outline-none",
-                "focus-visible:ring-2 focus-visible:ring-dawn-gold",
-              )}
+              className={cn(arrowButtonClassName, "left-3")}
               aria-label="上一張橫幅"
               onClick={goPrev}
             >
@@ -151,53 +155,47 @@ const Carousel = ({
             </button>
             <button
               type="button"
-              className={cn(
-                "m-0 p-2 size-10 text-background bg-night-sky/45 border-0",
-                "flex items-center justify-center",
-                "top-1/2 right-3 z-10 absolute -translate-y-1/2",
-                "transition-colors hover:bg-night-sky/65 focus-visible:outline-none",
-                "focus-visible:ring-2 focus-visible:ring-dawn-gold",
-              )}
+              className={cn(arrowButtonClassName, "right-3")}
               aria-label="下一張橫幅"
               onClick={goNext}
             >
               <ChevronRight className="size-5" aria-hidden />
             </button>
+            <div
+              className={cn(
+                "flex items-center justify-center gap-2",
+                "absolute bottom-3 left-1/2 z-10 -translate-x-1/2",
+              )}
+              role="tablist"
+              aria-label="橫幅指示點"
+            >
+              {slides.map((slide, index) => {
+                const isActive = index === activeIndex;
+
+                return (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-label={`前往第 ${index + 1} 張橫幅`}
+                    className={cn(
+                      "m-0 p-0 h-2 w-2 border-0 rounded-sm",
+                      "transition-colors",
+                      isActive
+                        ? "bg-dawn-sky"
+                        : "bg-dawn-sky/30 hover:bg-dawn-sky/55",
+                    )}
+                    onClick={() => {
+                      goTo(index);
+                    }}
+                  />
+                );
+              })}
+            </div>
           </>
         ) : null}
       </div>
-
-      {slideCount > 1 ? (
-        <div
-          className="mt-3 flex items-center justify-center gap-2"
-          role="tablist"
-          aria-label="橫幅指示點"
-        >
-          {slides.map((slide, index) => {
-            const isActive = index === activeIndex;
-
-            return (
-              <button
-                key={slide.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                aria-label={`前往第 ${index + 1} 張橫幅`}
-                className={cn(
-                  "m-0 p-0 h-2 w-2 border-0 rounded-sm",
-                  "transition-colors",
-                  isActive
-                    ? "bg-dawn-sky"
-                    : "bg-dawn-sky/30 hover:bg-dawn-sky/55",
-                )}
-                onClick={() => {
-                  goTo(index);
-                }}
-              />
-            );
-          })}
-        </div>
-      ) : null}
     </div>
   );
 };
