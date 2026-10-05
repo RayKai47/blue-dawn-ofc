@@ -41,3 +41,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent / preview artifacts
+.cursor-artifacts/
+*-backup.jpg
+**/_preview-*
