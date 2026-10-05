@@ -95,11 +95,12 @@ const GuildFamilyCarousel = () => {
   useEffect(() => {
     if (!api) return;
 
+    const carouselApi = api;
     const photoAutoplay = { id: 0 };
 
     function handleSelect() {
-      syncFamilyVideos(api);
-      scheduleFamilyPhotoAutoplay(api, photoAutoplay);
+      syncFamilyVideos(carouselApi);
+      scheduleFamilyPhotoAutoplay(carouselApi, photoAutoplay);
     }
 
     function handleEnded(event: Event) {
@@ -107,21 +108,22 @@ const GuildFamilyCarousel = () => {
 
       if (!(video instanceof HTMLVideoElement)) return;
 
-      const selectedNode = api.slideNodes()[api.selectedScrollSnap()];
+      const selectedNode =
+        carouselApi.slideNodes()[carouselApi.selectedScrollSnap()];
 
       if (!selectedNode?.contains(video)) return;
 
-      api.scrollNext();
+      carouselApi.scrollNext();
     }
 
-    const videos = api.slideNodes().flatMap((node) => {
+    const videos = carouselApi.slideNodes().flatMap((node) => {
       const video = node.querySelector("video");
 
       return video instanceof HTMLVideoElement ? [video] : [];
     });
 
     handleSelect();
-    api.on("select", handleSelect);
+    carouselApi.on("select", handleSelect);
     videos.forEach((video) => {
       video.addEventListener("ended", handleEnded);
     });
@@ -129,7 +131,7 @@ const GuildFamilyCarousel = () => {
 
     return () => {
       window.clearTimeout(photoAutoplay.id);
-      api.off("select", handleSelect);
+      carouselApi.off("select", handleSelect);
       videos.forEach((video) => {
         video.removeEventListener("ended", handleEnded);
       });
