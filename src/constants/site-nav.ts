@@ -17,7 +17,7 @@ export const NAV_ITEMS: NavItem[] = [
     description: "加入公會、查看缺額與申請方式",
   },
   {
-    label: "日誌",
+    label: "冒險日誌",
     href: "/journal",
     description: "冒險日誌、相簿與愛爾琳筆記",
   },
