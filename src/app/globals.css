@@ -4,6 +4,37 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* 靜態色階會輸出 CSS 變數，語意色與 bg-azure-600 這類類名才能共用。 */
+@theme {
+  --color-azure-50: #f0f9ff;
+  --color-azure-100: #e0f2fe;
+  --color-azure-200: #bae6fd;
+  --color-azure-300: #7dd3fc;
+  --color-azure-400: #38bdf8;
+  --color-azure-500: #0e89e2;
+  --color-azure-600: #0265c0;
+  --color-azure-700: #034e96;
+  --color-azure-800: #073b70;
+  --color-azure-900: #0c2a4d;
+  --color-azure-950: #061830;
+  --color-sakura-50: #fff0f6;
+  --color-sakura-100: #ffe4e6;
+  --color-sakura-200: #fecdd3;
+  --color-sakura-300: #fda4af;
+  --color-sakura-400: #fb7185;
+  --color-sakura-500: #f43f5e;
+  --color-sakura-600: #e11d48;
+  --color-sakura-700: #be123c;
+  --color-sakura-800: #9f1239;
+  --color-sakura-900: #881337;
+  --color-sakura-950: #4c0519;
+  --color-night-navy-50: #f8fafc;
+  --color-night-navy-100: #f1f5f9;
+  --color-night-navy-500: #64748b;
+  --color-night-navy-800: #1e293b;
+  --color-night-navy-900: #0f172a;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -51,80 +82,82 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* 蔚藍天際：天空藍、黎明金、夜空。語意色給 shadcn；dawn-* 給品牌強調。 */
+/* azure 主色、sakura 與黎明金點綴、night-navy 結構色。語意色只引用色階。 */
 :root {
-  --dawn-sky: oklch(0.62 0.13 235);
+  /* 中欄白底；側景內緣軟淡入白，與 content 連續 */
+  --site-content-bg: #ffffff;
+  --dawn-sky: var(--color-azure-600);
   --dawn-gold: oklch(0.8 0.12 78);
-  --night-sky: oklch(0.22 0.04 250);
-  --background: oklch(0.985 0.01 220);
-  --foreground: oklch(0.24 0.04 250);
-  --card: oklch(0.995 0.005 220);
-  --card-foreground: oklch(0.24 0.04 250);
-  --popover: oklch(0.995 0.005 220);
-  --popover-foreground: oklch(0.24 0.04 250);
-  --primary: oklch(0.58 0.13 235);
-  --primary-foreground: oklch(0.99 0.005 220);
-  --secondary: oklch(0.94 0.02 230);
-  --secondary-foreground: oklch(0.28 0.04 250);
-  --muted: oklch(0.95 0.015 230);
-  --muted-foreground: oklch(0.5 0.03 250);
-  --accent: oklch(0.8 0.12 78);
-  --accent-foreground: oklch(0.28 0.05 60);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.02 230);
-  --input: oklch(0.9 0.02 230);
-  --ring: oklch(0.58 0.13 235);
-  --chart-1: oklch(0.62 0.13 235);
-  --chart-2: oklch(0.8 0.12 78);
-  --chart-3: oklch(0.5 0.08 250);
-  --chart-4: oklch(0.72 0.08 200);
-  --chart-5: oklch(0.4 0.05 250);
+  --night-sky: var(--color-azure-950);
+  --background: var(--color-night-navy-50);
+  --foreground: var(--color-night-navy-800);
+  --card: #ffffff;
+  --card-foreground: var(--color-night-navy-800);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-night-navy-800);
+  --primary: var(--color-azure-600);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-azure-100);
+  --secondary-foreground: var(--color-azure-800);
+  --muted: var(--color-azure-50);
+  --muted-foreground: var(--color-night-navy-500);
+  --accent: var(--color-sakura-100);
+  --accent-foreground: var(--color-sakura-800);
+  --destructive: oklch(0.577 0.245 25);
+  --border: var(--color-night-navy-100);
+  --input: var(--color-night-navy-100);
+  --ring: var(--color-azure-600);
+  --chart-1: var(--color-azure-500);
+  --chart-2: var(--color-sakura-500);
+  --chart-3: var(--dawn-gold);
+  --chart-4: var(--color-azure-300);
+  --chart-5: var(--color-azure-800);
   --radius: 0.625rem;
-  --sidebar: oklch(0.975 0.015 220);
-  --sidebar-foreground: oklch(0.24 0.04 250);
-  --sidebar-primary: oklch(0.58 0.13 235);
-  --sidebar-primary-foreground: oklch(0.99 0.005 220);
-  --sidebar-accent: oklch(0.94 0.02 230);
-  --sidebar-accent-foreground: oklch(0.28 0.04 250);
-  --sidebar-border: oklch(0.9 0.02 230);
-  --sidebar-ring: oklch(0.58 0.13 235);
+  --sidebar: var(--color-night-navy-50);
+  --sidebar-foreground: var(--color-night-navy-800);
+  --sidebar-primary: var(--color-azure-600);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--color-azure-100);
+  --sidebar-accent-foreground: var(--color-night-navy-800);
+  --sidebar-border: var(--color-night-navy-100);
+  --sidebar-ring: var(--color-azure-600);
 }
 
 .dark {
-  --dawn-sky: oklch(0.74 0.12 230);
+  --dawn-sky: var(--color-azure-400);
   --dawn-gold: oklch(0.84 0.12 78);
-  --night-sky: oklch(0.17 0.04 250);
-  --background: oklch(0.17 0.04 250);
-  --foreground: oklch(0.97 0.01 220);
-  --card: oklch(0.22 0.04 250);
-  --card-foreground: oklch(0.97 0.01 220);
-  --popover: oklch(0.22 0.04 250);
-  --popover-foreground: oklch(0.97 0.01 220);
-  --primary: oklch(0.74 0.12 230);
-  --primary-foreground: oklch(0.18 0.04 250);
-  --secondary: oklch(0.28 0.04 250);
-  --secondary-foreground: oklch(0.97 0.01 220);
-  --muted: oklch(0.28 0.04 250);
-  --muted-foreground: oklch(0.72 0.03 230);
-  --accent: oklch(0.84 0.12 78);
-  --accent-foreground: oklch(0.2 0.04 60);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.74 0.12 230);
-  --chart-1: oklch(0.74 0.12 230);
-  --chart-2: oklch(0.84 0.12 78);
-  --chart-3: oklch(0.62 0.08 250);
-  --chart-4: oklch(0.7 0.08 200);
-  --chart-5: oklch(0.45 0.04 250);
-  --sidebar: oklch(0.2 0.04 250);
-  --sidebar-foreground: oklch(0.97 0.01 220);
-  --sidebar-primary: oklch(0.74 0.12 230);
-  --sidebar-primary-foreground: oklch(0.18 0.04 250);
-  --sidebar-accent: oklch(0.28 0.04 250);
-  --sidebar-accent-foreground: oklch(0.97 0.01 220);
-  --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.74 0.12 230);
+  --night-sky: var(--color-azure-950);
+  --background: var(--color-azure-900);
+  --foreground: var(--color-azure-50);
+  --card: var(--color-azure-800);
+  --card-foreground: var(--color-azure-50);
+  --popover: var(--color-night-navy-900);
+  --popover-foreground: var(--color-azure-50);
+  --primary: var(--color-azure-400);
+  --primary-foreground: var(--color-azure-950);
+  --secondary: var(--color-azure-800);
+  --secondary-foreground: var(--color-azure-50);
+  --muted: var(--color-azure-800);
+  --muted-foreground: var(--color-azure-300);
+  --accent: var(--color-sakura-900);
+  --accent-foreground: var(--color-sakura-100);
+  --destructive: oklch(0.704 0.191 25);
+  --border: var(--color-azure-800);
+  --input: var(--color-azure-800);
+  --ring: var(--color-azure-400);
+  --chart-1: var(--color-azure-500);
+  --chart-2: var(--color-sakura-500);
+  --chart-3: var(--dawn-gold);
+  --chart-4: var(--color-azure-300);
+  --chart-5: var(--color-azure-800);
+  --sidebar: var(--color-azure-950);
+  --sidebar-foreground: var(--color-azure-50);
+  --sidebar-primary: var(--color-azure-400);
+  --sidebar-primary-foreground: var(--color-azure-950);
+  --sidebar-accent: var(--color-azure-800);
+  --sidebar-accent-foreground: var(--color-azure-50);
+  --sidebar-border: var(--color-azure-800);
+  --sidebar-ring: var(--color-azure-400);
 }
 
 @layer base {
@@ -139,7 +172,12 @@
   }
 }
 
-/* Layout 左右側景：背景圖 + fixed attachment，非 position:fixed 浮層 */
+/* Layout 左右側景：背景圖 + fixed attachment，非 position:fixed 浮層。
+   僅用於 banner 以下的 SiteShell，勿包住全寬 hero。 */
+.site-content {
+  background-color: var(--site-content-bg);
+}
+
 .site-side-left,
 .site-side-right {
   background-repeat: no-repeat;

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { SiteShell } from "#/components/shared/site-shell";
 import { cn } from "#/lib/utils";
 
 type HomeContentShellProps = {
@@ -9,15 +10,17 @@ type HomeContentShellProps = {
 
 const HomeContentShell = ({ children, className }: HomeContentShellProps) => {
   return (
-    <div
-      className={cn(
-        "mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 sm:py-14",
-        "flex min-w-0 flex-col gap-12",
-        className,
-      )}
-    >
-      {children}
-    </div>
+    <SiteShell>
+      <div
+        className={cn(
+          "w-full px-4 py-10 sm:px-6 sm:py-14",
+          "flex min-w-0 flex-col gap-12",
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </SiteShell>
   );
 };
 

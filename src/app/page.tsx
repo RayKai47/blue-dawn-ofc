@@ -1,7 +1,7 @@
+import { GuildAboutContent } from "#/components/about/guild-about-content";
 import { GuildIntro } from "#/components/home/guild-intro";
 import { HomeContentShell } from "#/components/home/home-content-shell";
 import { HomeHero } from "#/components/home/home-hero";
-import { JournalPreview } from "#/components/home/journal-preview";
 
 const HomePage = () => {
   return (
@@ -9,7 +9,7 @@ const HomePage = () => {
       <HomeHero />
       <HomeContentShell>
         <GuildIntro />
-        <JournalPreview />
+        <GuildAboutContent />
       </HomeContentShell>
     </div>
   );
