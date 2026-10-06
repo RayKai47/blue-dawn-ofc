@@ -27,7 +27,7 @@ export const JOURNAL_COMICS: JournalComic[] = [
   },
   {
     id: "muscle-kawaii",
-    src: "/index/blog/comic-muscle.png",
+    src: "/index/blog/comic-kawaii.png",
     title: "狂風的副會長 肌肉卡哇伊",
     alt: "四格漫畫：狂風的大劍戰士肌肉卡哇伊，可愛也是一種力量",
     width: 1230,
@@ -36,8 +36,16 @@ export const JOURNAL_COMICS: JournalComic[] = [
   {
     id: "bubble-girl",
     src: "/index/blog/comic-catcat.png",
-    title: "清純可愛的美少女副會 貓餅多多",
-    alt: "氣泡美少女貓餅多多，手持法杖的粉紅頭髮角色",
+    title: "呆萌可愛的公會吉祥物 美少女副會長 貓餅多多",
+    alt: "呆萌的粉紅頭髮，可愛又呆萌的貓餅多多",
+    width: 775,
+    height: 1680,
+  },
+  {
+    id: "bubble-girl",
+    src: "/index/blog/comic-frozenMoon.png",
+    title: "鬥氣值爆滿的凍月，準備前往討伐！",
+    alt: "戰意滿滿的凍月，結果撲了一個空！",
     width: 775,
     height: 1680,
   },
