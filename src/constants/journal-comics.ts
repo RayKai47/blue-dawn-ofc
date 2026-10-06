@@ -42,7 +42,7 @@ export const JOURNAL_COMICS: JournalComic[] = [
     height: 1680,
   },
   {
-    id: "bubble-girl",
+    id: "frozen-witch",
     src: "/index/blog/comic-frozenMoon.png",
     title: "鬥氣值爆滿的凍月，準備前往討伐！",
     alt: "戰意滿滿的凍月，結果撲了一個空！",
