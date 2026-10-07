@@ -73,6 +73,8 @@ function useHomeScroll(rootRef: RefObject<HTMLDivElement | null>) {
     }
 
     function onPlay(event: Event) {
+      if (!root) return;
+
       root.querySelectorAll("video").forEach((video) => {
         if (video !== event.target) video.pause();
       });
