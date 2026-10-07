@@ -84,8 +84,6 @@
 
 /* azure 主色、sakura 與黎明金點綴、night-navy 結構色。語意色只引用色階。 */
 :root {
-  /* 中欄白底；側景內緣軟淡入白，與 content 連續 */
-  --site-content-bg: #ffffff;
   --dawn-sky: var(--color-azure-600);
   --dawn-gold: oklch(0.8 0.12 78);
   --night-sky: var(--color-azure-950);
@@ -170,27 +168,4 @@
   html {
     @apply font-sans;
   }
-}
-
-/* Layout 左右側景：背景圖 + fixed attachment，非 position:fixed 浮層。
-   僅用於 banner 以下的 SiteShell，勿包住全寬 hero。 */
-.site-content {
-  background-color: var(--site-content-bg);
-}
-
-.site-side-left,
-.site-side-right {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.site-side-left {
-  background-image: url("/index/side/side-bg-left.jpg");
-  background-position: left center;
-}
-
-.site-side-right {
-  background-image: url("/index/side/side-bg-right.jpg");
-  background-position: right center;
 }
