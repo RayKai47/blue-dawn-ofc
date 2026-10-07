@@ -1,15 +1,30 @@
-import { Carousel } from "#/components/shared/carousel";
-import { HOME_BANNERS } from "#/constants/home-banners";
+import Image from "next/image";
+
+import { images } from "#/constants/home";
 
 const HomeHero = () => {
   return (
-    <section aria-label="首頁橫幅" className="w-full">
-      <Carousel
-        slides={HOME_BANNERS}
-        intervalMs={5000}
-        aspectClassName="aspect-[16/10] sm:aspect-[21/9]"
-      />
-    </section>
+    <header className="hero" id="top">
+      <div className="hero-in">
+        <Image
+          id="heroImg"
+          priority
+          sizes="100vw"
+          src={images.hero.src}
+          width={images.hero.width}
+          height={images.hero.height}
+          alt={images.hero.alt}
+        />
+        <div className="hero-t" id="heroT">
+          <p className="sub">
+            這裡只有無邊無際的天，
+            <br />
+            沒有烏雲密佈的灰。
+          </p>
+        </div>
+        <div className="hint">向下滑動</div>
+      </div>
+    </header>
   );
 };
 

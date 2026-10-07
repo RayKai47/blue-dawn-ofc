@@ -1,18 +1,16 @@
-import { GuildAboutContent } from "#/components/about/guild-about-content";
-import { GuildIntro } from "#/components/home/guild-intro";
-import { HomeContentShell } from "#/components/home/home-content-shell";
-import { HomeHero } from "#/components/home/home-hero";
+import type { Metadata } from "next";
 
-const HomePage = () => {
-  return (
-    <div className="w-full flex flex-1 flex-col">
-      <HomeHero />
-      <HomeContentShell>
-        <GuildIntro />
-        <GuildAboutContent />
-      </HomeContentShell>
-    </div>
-  );
+import { HomePage } from "#/components/home/home-page";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "蔚藍天際 Blue Dawn｜《瑪奇 Mobile》公會",
+  },
+  description:
+    "這裡只有無邊無際的天，沒有烏雲密佈的灰。"
+    + "想一起飛，這裡有伴；人在遠方，天也還在。",
 };
 
-export default HomePage;
+const Page = () => <HomePage />;
+
+export default Page;
