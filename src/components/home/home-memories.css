@@ -1,0 +1,101 @@
+/* 回憶區：章節目錄 + 單張檢視 + 三欄照片牆。限定在 .bd 底下。 */
+
+.bd .memories{position:relative;padding:clamp(72px,12vh,140px) clamp(20px,6vw,120px);background:radial-gradient(120% 80% at 85% 0%,#24508f 0%,var(--deep) 45%,#0e2147 100%);color:#fff;overflow:hidden}
+.bd .mem-heading{font-size:clamp(1.6rem,3.4vw,2.8rem);margin-bottom:clamp(28px,5vw,56px);text-shadow:0 2px 20px rgba(0,0,0,.4)}
+.bd .mem-layout{display:grid;grid-template-columns:minmax(210px,290px) minmax(0,1fr);gap:clamp(24px,4.5vw,72px);align-items:start;--row:5.6rem}
+
+@keyframes mem-rise{from{opacity:0;translate:0 22px}to{opacity:1;translate:0 0}}
+@keyframes mem-wipe-r{from{clip-path:polygon(0 0,0 0,-20% 100%,0 100%)}to{clip-path:polygon(0 0,120% 0,100% 100%,0 100%)}}
+@keyframes mem-wipe-l{from{clip-path:polygon(100% 0,100% 0,120% 100%,100% 100%)}to{clip-path:polygon(100% 0,-20% 0,0 100%,100% 100%)}}
+@keyframes mem-zoom{from{scale:1.12}to{scale:1}}
+
+/* ── 章節目錄 ─────────────────────────────── */
+.bd .mem-tabs{position:relative;display:flex;flex-direction:column}
+.bd .mem-rail{position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(255,255,255,.18)}
+.bd .mem-ind{position:absolute;left:0;top:0;width:2px;height:var(--row);background:linear-gradient(var(--sky),var(--dawn));translate:0 calc(var(--i) * var(--row));transition:translate .75s cubic-bezier(.65,0,.2,1)}
+.bd .mem-ind::after{content:"";position:absolute;left:-5px;top:50%;width:12px;height:12px;translate:0 -50%;background:var(--dawn);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.bd .mem-tab{all:unset;box-sizing:border-box;display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:1rem;height:var(--row);padding-left:1.5rem;color:rgba(255,255,255,.42);cursor:pointer;transition:color .5s,translate .6s cubic-bezier(.2,.7,.2,1)}
+.bd .mem-tab:hover{color:rgba(255,255,255,.8)}
+.bd .mem-tab[aria-selected="true"]{color:#fff;translate:6px 0}
+.bd .mem-tab:focus-visible{outline:3px solid var(--dawn);outline-offset:-3px}
+.bd .mem-no{font-family:var(--font-bd-serif),"Noto Serif TC",serif;font-size:clamp(2rem,3.4vw,2.8rem);font-weight:900;line-height:1}
+.bd .mem-name{font-family:var(--font-bd-serif),"Noto Serif TC",serif;font-size:clamp(1.05rem,1.6vw,1.4rem);line-height:1.35}
+.bd .mem-name small{display:block;margin-top:.15rem;font-family:var(--font-bd-sans),"Noto Sans TC",sans-serif;font-size:.68rem;letter-spacing:.32em;opacity:.75}
+
+/* ── 章節故事 ─────────────────────────────── */
+.bd .mem-stories{display:grid;margin-bottom:clamp(18px,3vw,32px)}
+.bd .mem-story{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26em);gap:1rem 2.5rem;align-items:end;visibility:hidden}
+.bd .mem-story.is-active{visibility:visible}
+.bd .mem-kicker{margin:0 0 .4rem;font-size:.8rem;letter-spacing:.32em;color:var(--dawn)}
+.bd .mem-title{white-space:nowrap;font-size:clamp(1.9rem,3.8vw,3.2rem);font-weight:900;letter-spacing:.04em;line-height:1.15}
+.bd .mem-ch{display:inline-block}
+.bd .is-active .mem-ch{animation:mem-rise .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--k,0) * .05s + .1s)}
+.bd .mem-intro p{margin:0;color:#dcebff;font-size:clamp(.95rem,1.4vw,1.1rem)}
+.bd .is-active .mem-rise{animation:mem-rise .9s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--k,0) * .1s + .1s)}
+
+/* ── 單張檢視 ─────────────────────────────── */
+.bd .mem-stage{position:relative;aspect-ratio:16/9;border-radius:6px 44px 6px 44px;overflow:hidden;background:#0a1a33;box-shadow:0 30px 80px rgba(0,0,0,.45);touch-action:pan-y;user-select:none}
+.bd .mem-slide{position:absolute;inset:0;margin:0}
+.bd .mem-slide.is-old{z-index:1}
+.bd .mem-slide.is-new{z-index:2;animation:mem-wipe-r 1.05s cubic-bezier(.7,0,.2,1) both}
+.bd .mem-slide.is-new[data-dir="-1"]{animation-name:mem-wipe-l}
+.bd .mem-img{object-fit:cover}
+.bd .mem-slide.is-new .mem-img{animation:mem-zoom 1.9s cubic-bezier(.2,.7,.2,1) both}
+.bd .mem-slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:3rem 1.5rem 1.3rem;color:#fff;background:linear-gradient(transparent,rgba(5,15,35,.8));font-family:var(--font-bd-serif),"Noto Serif TC",serif;font-size:clamp(1rem,1.8vw,1.4rem)}
+.bd .mem-slide.is-new figcaption{animation:mem-rise .8s cubic-bezier(.2,.7,.2,1) .6s both}
+.bd .mem-count{position:absolute;top:1rem;right:1.5rem;z-index:5;font-family:var(--font-bd-serif),"Noto Serif TC",serif;letter-spacing:.12em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.bd .mem-count b{font-size:1.6rem}
+.bd .mem-arrow{all:unset;box-sizing:border-box;position:absolute;top:50%;z-index:5;display:grid;place-items:center;width:3rem;height:3rem;translate:0 -50%;border:1px solid rgba(255,255,255,.4);border-radius:50%;background:rgba(10,26,51,.45);color:#fff;backdrop-filter:blur(6px);cursor:pointer;transition:background .3s,scale .3s}
+.bd .mem-arrow:hover{background:rgba(255,255,255,.25);scale:1.06}
+.bd .mem-arrow:focus-visible{outline:3px solid var(--dawn);outline-offset:3px}
+.bd .mem-arrow svg{width:1.4rem;height:1.4rem}
+.bd .mem-arrow.is-prev{left:1rem}
+.bd .mem-arrow.is-next{right:1rem}
+
+.bd .mem-thumbs{position:relative;display:flex;gap:10px;margin-top:14px;padding:6px 2px;overflow-x:auto;scrollbar-width:none;scroll-behavior:smooth}
+.bd .mem-thumbs::-webkit-scrollbar{display:none}
+.bd .mem-thumb{all:unset;box-sizing:border-box;position:relative;flex:0 0 clamp(76px,9vw,116px);aspect-ratio:16/9;border-radius:8px;overflow:hidden;opacity:.45;cursor:pointer;transition:opacity .4s,translate .4s}
+.bd .mem-thumb img{object-fit:cover}
+.bd .mem-thumb:hover{opacity:.85}
+.bd .mem-thumb[aria-current="true"]{opacity:1;translate:0 -3px}
+.bd .mem-thumb::after{content:"";position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 0 2px var(--dawn);opacity:0;transition:opacity .4s}
+.bd .mem-thumb[aria-current="true"]::after{opacity:1}
+.bd .mem-thumb:focus-visible{outline:3px solid var(--dawn);outline-offset:2px}
+
+/* ── 三欄自動捲動照片牆 ───────────────────── */
+.bd .gal-wall{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:clamp(8px,1.6vw,18px);height:min(78vh,720px);overflow:hidden;border-radius:6px 44px 6px 44px;-webkit-mask-image:linear-gradient(transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(transparent,#000 8%,#000 92%,transparent)}
+.bd .gal-col{min-width:0;height:100%}
+.bd .gal-col-wrap,.bd .gal-embla,.bd .gal-embla [data-slot="carousel-content"]{height:100%}
+.bd .gal-slide{flex:0 0 auto}
+.bd .gal-item{position:relative;margin:0;border-radius:14px;overflow:hidden}
+.bd .gal-item img{display:block;width:100%;height:auto}
+.bd .gal-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .9rem .7rem;color:#fff;background:linear-gradient(transparent,rgba(5,15,35,.8));font-family:var(--font-bd-serif),"Noto Serif TC",serif;font-size:.9rem}
+
+/* ── 窄螢幕：目錄變成橫向，指示線在底部滑動 ── */
+@media (max-width:899px){
+  .bd .mem-layout{grid-template-columns:minmax(0,1fr);--col:max(34vw,9rem)}
+  .bd .mem-nav{overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(20px,6vw,120px));padding-inline:clamp(20px,6vw,120px)}
+  .bd .mem-nav::-webkit-scrollbar{display:none}
+  .bd .mem-tabs{flex-direction:row;width:max-content}
+  .bd .mem-tab{grid-template-columns:1fr;row-gap:.2rem;align-content:center;width:var(--col);height:auto;padding:.4rem .8rem 1.1rem 0}
+  .bd .mem-tab[aria-selected="true"]{translate:0 0}
+  .bd .mem-no{font-size:1.6rem}
+  .bd .mem-name small{display:none}
+  .bd .mem-rail{left:0;right:0;top:auto;bottom:0;width:auto;height:2px}
+  .bd .mem-ind{left:0;top:auto;bottom:0;width:var(--col);height:2px;background:linear-gradient(90deg,var(--sky),var(--dawn));translate:calc(var(--i) * var(--col)) 0}
+  .bd .mem-ind::after{left:0}
+  .bd .mem-story{grid-template-columns:minmax(0,1fr)}
+  .bd .mem-stage{border-radius:6px 28px 6px 28px}
+  .bd .mem-arrow{width:2.5rem;height:2.5rem}
+  .bd .gal-wall{border-radius:6px 28px 6px 28px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .bd .mem-ind,.bd .mem-tab,.bd .mem-thumbs{transition:none;scroll-behavior:auto}
+  .bd .is-active .mem-ch,.bd .is-active .mem-rise{animation:none}
+  .bd .mem-slide.is-new{animation:mem-fade .25s ease both}
+  .bd .mem-slide.is-new .mem-img,.bd .mem-slide.is-new figcaption{animation:none}
+}
+@keyframes mem-fade{from{opacity:0}to{opacity:1}}
+
+@media (prefers-reduced-motion:no-preference){.bd .mem-nav{scroll-behavior:smooth}}

@@ -117,24 +117,11 @@ export const images: Record<string, HomeImage> = {
   },
 };
 
-export const gallery = [
-  { image: images.night1, caption: "夜市燈籠亮起來，大家排排站" },
-  { image: images.night2, caption: "擠一點才熱鬧，寵物也來了" },
-  { image: images.drink4, caption: "闖關的路途上，一起準備、絕不孤單" },
-  { image: images.dungeon, caption: "通關的之餘，也是要一起慶祝、分享成就與喜悅" },
-  { image: images.beCool, caption: "日常一起裝酷，也是必不可少的環節" },
-  { image: images.onBoard, caption: "可以哭鬧，也可以嘻笑，不論如何，但我們終聚一起" },
-  { image: images.musicTime, caption: "只要有人彈起琴，隨時隨地都是音樂會" },
-  { image: images.funnyMoments, caption: "頭頂鮮魚的當下，聊天框只剩哈哈哈" },
-  { image: images.headshots, caption: "四格大頭貼，每個人擺出自己愛好的姿勢" },
-  { image: images.fireworks, caption: "煙火升空的那一刻，身邊有你們就夠了" },
-  { image: images.family1, caption: "晴朗的海邊，團聚一起慶祝一杯奶茶" },
-  { image: images.family2, caption: "天空很大，位置夠每個人" },
-];
-
 export type HomeVideo = {
   src: string;
   caption: string;
+  // 0~1，影片本身太大聲時調小；不寫就是 1
+  volume?: number;
 };
 
 export const videos: HomeVideo[] = [

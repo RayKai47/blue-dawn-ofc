@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import { images } from "#/constants/home";
 
+import { HomeMusicToggle } from "#/components/home/home-music-toggle";
+
 const HomeNav = () => {
   const logo = images.logo;
 
@@ -20,6 +22,7 @@ const HomeNav = () => {
         <a href="#about">公會</a>
         <a href="#memory">回憶</a>
         <a href="#join">加入</a>
+        <HomeMusicToggle />
       </div>
       <i id="bar" />
     </nav>
