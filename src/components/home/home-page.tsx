@@ -6,15 +6,16 @@ import { Noto_Sans_TC, Noto_Serif_TC } from "next/font/google";
 
 import { videos } from "#/constants/home";
 import { JOURNAL_COMICS } from "#/constants/journal-comics";
+import { MEMORY_CHAPTERS } from "#/constants/memories";
 
 import { useHomeScroll } from "#/hooks/use-home-scroll";
 
 import { HomeComics } from "#/components/home/home-comics";
 import { HomeFooter } from "#/components/home/home-footer";
-import { HomeGallery } from "#/components/home/home-gallery";
 import { HomeHero } from "#/components/home/home-hero";
 import { HomeJoin } from "#/components/home/home-join";
 import { HomeManifesto } from "#/components/home/home-manifesto";
+import { HomeMemories } from "#/components/home/home-memories";
 import { HomeNav } from "#/components/home/home-nav";
 import { HomeNight } from "#/components/home/home-night";
 import { HomePrinciples } from "#/components/home/home-principles";
@@ -50,7 +51,7 @@ const HomePage = () => {
       <HomeHero />
       <HomeManifesto />
       <HomeShip />
-      <HomeGallery />
+      <HomeMemories chapters={MEMORY_CHAPTERS} />
       <HomeNight />
       <HomeComics comics={JOURNAL_COMICS} />
       <HomeVideos videos={videos} />

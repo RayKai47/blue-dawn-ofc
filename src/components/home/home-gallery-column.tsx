@@ -13,23 +13,21 @@ import {
   type CarouselApi,
 } from "#/components/ui/carousel";
 
-import type { gallery } from "#/constants/home";
-
-type GalleryItem = (typeof gallery)[number];
+import type { MemoryPhoto } from "#/types/memory";
 
 type HomeGalleryColumnProps = {
-  items: GalleryItem[];
+  photos: MemoryPhoto[];
   direction: "forward" | "backward";
 };
 
-const COPIES = 2;
+const MIN_SLIDES = 8;
 const SPEED = 0.7;
 
 function prefersReducedMotion() {
   return typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-const HomeGalleryColumn = ({ items, direction }: HomeGalleryColumnProps) => {
+const HomeGalleryColumn = ({ photos, direction }: HomeGalleryColumnProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [plugins] = useState(() => [
     AutoScroll({
@@ -42,6 +40,8 @@ const HomeGalleryColumn = ({ items, direction }: HomeGalleryColumnProps) => {
     }),
   ]);
   const rootRef = useRef<HTMLDivElement>(null);
+  // 張數少的欄多複製幾份，確保 loop 捲動時不會出現空白
+  const copies = Math.max(2, Math.ceil(MIN_SLIDES / Math.max(photos.length, 1)));
 
   useEffect(() => {
     const root = rootRef.current;
@@ -64,6 +64,8 @@ const HomeGalleryColumn = ({ items, direction }: HomeGalleryColumnProps) => {
     return () => observer.disconnect();
   }, [api]);
 
+  if (photos.length === 0) return null;
+
   return (
     <div ref={rootRef} className="gal-col-wrap">
       <Carousel
@@ -74,20 +76,20 @@ const HomeGalleryColumn = ({ items, direction }: HomeGalleryColumnProps) => {
         className="gal-embla"
       >
         <CarouselContent>
-          {Array.from({ length: COPIES }, (_, copy) => copy).flatMap((copy) =>
-            items.map(({ image, caption }) => (
-              <CarouselItem className="gal-slide" key={`${copy}-${image.src}`} aria-hidden={copy > 0}>
+          {Array.from({ length: copies }, (_, copy) => copy).flatMap((copy) =>
+            photos.map((photo) => (
+              <CarouselItem className="gal-slide" key={`${copy}-${photo.image.src}`} aria-hidden={copy > 0}>
                 <figure className="gal-item">
                   <Image
-                    sizes="(min-width: 900px) 30vw, 50vw"
-                    src={image.src}
-                    width={image.width}
-                    height={image.height}
-                    alt={copy > 0 ? "" : image.alt}
+                    sizes="(min-width: 1100px) 22vw, 45vw"
+                    src={photo.image.src}
+                    width={photo.image.width}
+                    height={photo.image.height}
+                    alt={copy > 0 ? "" : photo.image.alt}
                     draggable={false}
-                    loading="eager"
+                    loading={copy > 0 ? "lazy" : "eager"}
                   />
-                  <figcaption>{caption}</figcaption>
+                  <figcaption>{photo.caption}</figcaption>
                 </figure>
               </CarouselItem>
             )),

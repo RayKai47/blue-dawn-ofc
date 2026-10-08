@@ -30,22 +30,6 @@ html:has(.bd){scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:sm
 .bd .mani h2 span{opacity:.16;transition:opacity .25s}
 .bd .mani h2 span.on{opacity:1}
 .bd .mani p{max-width:34em;margin:2rem 0 0;color:var(--muted);font-size:clamp(1rem,1.6vw,1.2rem)}
-.bd .gal{position:relative;height:100vh;min-height:560px;overflow:hidden;background:var(--deep)}
-.bd .gal h2{position:absolute;top:calc(8vh + env(safe-area-inset-top,0px));left:clamp(24px,6vw,96px);z-index:3;color:#fff;font-size:clamp(1.6rem,3.4vw,2.8rem);white-space:nowrap;text-shadow:0 2px 20px rgba(0,0,0,.6);pointer-events:none}
-.bd .gal::before,.bd .gal::after{content:"";position:absolute;left:0;right:0;z-index:2;height:24vh;pointer-events:none}
-.bd .gal::before{top:0;background:linear-gradient(var(--deep),transparent)}
-.bd .gal::after{bottom:0;background:linear-gradient(transparent,var(--deep))}
-.bd .gal-wall{display:flex;gap:clamp(8px,1.2vw,16px);height:100%;padding:0 clamp(12px,4vw,64px)}
-.bd .gal{--gal-gap:clamp(8px,1.2vw,16px)}
-.bd .gal-col{flex:1;min-width:0;height:100%;overflow:hidden;cursor:grab;user-select:none}
-.bd .gal-col.is-drag{cursor:grabbing}
-.bd .gal-col-wrap,.bd .gal-embla,.bd .gal-embla [data-slot="carousel-content"]{height:100%}
-.bd .gal-embla [data-slot="carousel-content"]>div{height:100%;margin-top:0}
-.bd .gal-embla .gal-slide{flex:0 0 auto;padding-top:0;padding-bottom:var(--gal-gap)}
-.bd .gal-item{position:relative;margin:0;overflow:hidden;border-radius:6px 32px 6px 32px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.bd .gal-item img{display:block;width:100%;height:auto;max-width:none;pointer-events:none}
-.bd .gal-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:2rem 1rem .9rem;color:#fff;background:linear-gradient(transparent,rgba(5,15,35,.8));font-family:var(--font-bd-serif),"Noto Serif TC",serif;font-size:clamp(.85rem,1.3vw,1.1rem);line-height:1.5;pointer-events:none}
-@media (max-width:599px){.bd .gal-col:nth-child(3){display:none}}
 .bd .night{position:relative;height:200vh;background:#1b1020}
 .bd .night .stick{--x:50%;--y:50%}
 .bd .night img{position:absolute;inset:-6%;width:112%;height:112%;max-width:none;object-fit:cover;will-change:transform}
