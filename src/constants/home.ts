@@ -120,6 +120,8 @@ export const images: Record<string, HomeImage> = {
 export type HomeVideo = {
   src: string;
   caption: string;
+  // 0~1，影片本身太大聲時調小；不寫就是 1
+  volume?: number;
 };
 
 export const videos: HomeVideo[] = [
