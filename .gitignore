@@ -46,3 +46,6 @@ next-env.d.ts
 .cursor-artifacts/
 *-backup.jpg
 **/_preview-*
+
+# payload 本地上傳的圖片
+/media

@@ -91,7 +91,9 @@ cp .env.example .env.local
 
 ```text
 src/
-  app/              # App Router（page / layout / globals.css）
+  app/(frontend)/   # 官網前台（page / layout / globals.css）
+  app/(payload)/    # Payload 後台與 API（自動產生）
+  collections/      # Payload 內容結構（文章、圖片、帳號）
   components/ui/    # shadcn 組件
   hooks/
   lib/              # cn() 等共用函式
@@ -113,6 +115,7 @@ docs/
 - [Import 與 Hooks](docs/conventions/imports-and-hooks.md)
 - [Tailwind 類別順序](docs/conventions/tailwind.md)
 - [學習路徑](docs/learning-path.md)
+- [Payload CMS 本地設定](docs/payload-setup.md)
 - Agent 指引：`AGENTS.md`（Next.js 16 文件在 `node_modules/next/dist/docs/`）
 
 ---
