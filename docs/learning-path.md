@@ -45,7 +45,7 @@ yarn dlx shadcn@latest add button
 
 ## 4. UI
 
-- Tailwind CSS v4：設定在 `src/app/globals.css` 與 `postcss.config.mjs`。
+- Tailwind CSS v4：設定在 `src/app/(frontend)/globals.css` 與 `postcss.config.mjs`。
 - shadcn/ui：`components.json` 的 alias 是 `#/components` 等。
 - 組件會進 `src/components/ui/`。先 `yarn dlx shadcn@latest add`，不要手抄舊版。
 - 設計 token（天空藍、黎明金、夜空）已寫在 `globals.css`。改品牌色改 CSS 變數，不要在頁面上散落 hex。

@@ -18,5 +18,5 @@
 - 等寬等高用 `size-*`，不要同時寫 `w-10 h-10`。
 - 間距用 `flex` + `gap-*`，不要用 `space-x-*` / `space-y-*`。
 - 顏色優先用語意 token：`bg-background`、`text-foreground`、`bg-primary`、`text-muted-foreground`。
-- 品牌色用 `bg-dawn-sky`、`text-dawn-gold`、`bg-night-sky`（定義在 `src/app/globals.css`）。
+- 品牌色用 `bg-dawn-sky`、`text-dawn-gold`、`bg-night-sky`（定義在 `src/app/(frontend)/globals.css`）。
 - 不要為了蓋過 shadcn 組件而疊一堆 raw color。

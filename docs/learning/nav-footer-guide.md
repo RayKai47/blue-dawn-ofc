@@ -91,7 +91,7 @@ import { usePathname } from "next/navigation";
 
 ## 品牌色（Tailwind）
 
-定義在 `src/app/globals.css`，可直接寫：
+定義在 `src/app/(frontend)/globals.css`，可直接寫：
 
 - `text-dawn-sky`、`bg-dawn-sky/15` — 天空藍
 - `text-dawn-gold` — 黎明金（例如頁尾 hover）
@@ -127,7 +127,7 @@ yarn dlx shadcn@latest add <組件名> -y
 | `src/components/shared/site-nav-links.tsx` | 連結列 + active 樣式（Client） |
 | `src/components/shared/mobile-nav.tsx` | 小螢幕漢堡選單（Client） |
 | `src/components/shared/site-footer.tsx` | 頁尾標語、連結、版權 |
-| `src/app/layout.tsx` | 全站包住 Header / `<main>` / Footer |
+| `src/app/(frontend)/layout.tsx` | 全站包住 Header / `<main>` / Footer |
 | `src/app/about/page.tsx` | 公會介紹（占位） |
 | `src/app/recruit/page.tsx` | 招募（占位） |
 | `src/app/journal/page.tsx` | 日誌（占位） |
